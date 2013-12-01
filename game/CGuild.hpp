@@ -116,6 +116,7 @@ namespace libm2 {
         CGuild(TGuildCreateParameter &);
         ~CGuild();
         DWORD GetID(void) const;
+		void SetLevel(BYTE lvl) const;
         const char * GetName(void) const;
         int GetSP(void) const;
         int GetMaxSP(void);
