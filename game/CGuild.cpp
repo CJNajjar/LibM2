@@ -422,14 +422,12 @@ namespace libm2 {
     DWORD CGuild::GetID() const {
         return this->m_data.guild_id;
     }
-	
-	BYTE CGuild::GetLevel() const 
-	{
-		return this->m_data.level;
-	}
-	
-	void CGuild::SetLevel(BYTE lvl) const
-	{
-		this->m_data.level = lvl;
-	}
+
+    BYTE CGuild::GetLevel() const {
+        return this->m_data.level;
+    }
+
+    void CGuild::SetLevel(BYTE lvl) {
+        this->m_data.level = lvl;
+    }
 }

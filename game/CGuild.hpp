@@ -116,7 +116,6 @@ namespace libm2 {
         CGuild(TGuildCreateParameter &);
         ~CGuild();
         DWORD GetID(void) const;
-		void SetLevel(BYTE lvl) const;
         const char * GetName(void) const;
         int GetSP(void) const;
         int GetMaxSP(void);
@@ -234,6 +233,9 @@ namespace libm2 {
         void LoadGuildMemberData(SQLMsg *);
         void __P2PUpdateGrade(SQLMsg *);
         CGuild::GuildJoinErrCode VerifyGuildJoinableCondition(LPCHARACTER);
+    // Non-Original functions begin
+    public:
+        void SetLevel(BYTE lvl);
     };
 }
 #endif // __LIBM2_GAME_CGUILD_HPP
