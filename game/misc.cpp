@@ -60,7 +60,7 @@ namespace libm2 {
             return max;
         }
         return val;
-    };
+    }
 
     long long MAX(long long val, long long val2) {
         if (val > val2) {
@@ -69,8 +69,8 @@ namespace libm2 {
         return val2;
     }
 
-    void TransformRefineItem(LPITEM a1, LPITEM a2) {
-        ((void(*)(CItem *, CItem *))Addr::misc::TransformRefineItem)(a1, a2);
+    void TransformRefineItem(LPITEM pkOldItem, LPITEM pkNewItem) {
+        ((void(*)(CItem *, CItem *))Addr::misc::TransformRefineItem)(pkOldItem, pkNewItem);
     }
 
     void BroadcastNotice(const char * format, ...) {
@@ -80,7 +80,7 @@ namespace libm2 {
         vsnprintf(buffer, 1024, format, args);
         ((void(*)(const char*))Addr::misc::BroadcastNotice)(buffer);
         va_end(args);
-    };
+    }
 
     void SendNotice(const char * format, ...) {
         va_list args;
@@ -89,5 +89,9 @@ namespace libm2 {
         vsnprintf(buffer, 1024, format, args);
         ((void(*)(const char*))Addr::misc::SendNotice)(buffer);
         va_end(args);
-    };
+    }
+
+    bool IS_SUMMONABLE_ZONE(int map_index) {
+        return ((bool(*)(int))Addr::misc::IS_SUMMONABLE_ZONE)(map_index);
+    }
 }

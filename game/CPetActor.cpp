@@ -54,5 +54,33 @@ namespace libm2 {
     bool CPetActor::_UpdateFollowAI() {
         return ((bool(*)(CPetActor * const))Addr::CPetActor::_UpdateFollowAI)(this);
     }
+	
+    LPCHARACTER CPetActor::GetCharacter() const {
+        return this->m_pkChar;
+    }
+
+    LPCHARACTER CPetActor::GetOwner() const {
+        return this->m_pkOwner;
+    }
+
+    DWORD CPetActor::GetVID() const {
+        return this->m_dwVID;
+    }
+
+    DWORD CPetActor::GetVnum() const {
+        return this->m_dwVnum;
+    }
+
+    DWORD CPetActor::GetSummonItemVID() {
+        return this->m_dwSummonItemVID;
+    }
+
+    //bool CPetActor::HasOption(CPetActor::EPetOptions) const {}
+
+    //bool CPetActor::IsSummoned() const {}
+
+    //CPetActor::CPetActor(LPCHARACTER, DWORD, DWORD) {}
+
+    //CPetActor::~CPetActor() {}
 
 } 

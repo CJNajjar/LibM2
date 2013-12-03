@@ -38,5 +38,7 @@ namespace libm2 {
         lua_settop SetTop = (lua_settop) Addr::lua::SetTop;
         lua_rawseti RawSetI = (lua_rawseti) Addr::lua::RawSetI;
         lua_rawset RawSet = (lua_rawset) Addr::lua::RawSet;
+
+        lua_type Type = (lua_type) Addr::lua::Type;
     }
 }
