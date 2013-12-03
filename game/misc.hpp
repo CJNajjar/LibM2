@@ -32,8 +32,9 @@ namespace libm2 {
     long long MIN(long long val, long long val2);
     long long MINMAX(long long min, long long val, long long max);
     long long MAX(long long val, long long val2);
-    void TransformRefineItem(LPITEM a1, LPITEM a2);
+    void TransformRefineItem(LPITEM pkOldItem, LPITEM pkNewItem);
     void BroadcastNotice(const char *, ...);
     void SendNotice(const char *, ...);
+    bool IS_SUMMONABLE_ZONE(int map_index);
 }
 #endif // __LIBM2_GAME_MISC_HPP

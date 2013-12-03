@@ -39,6 +39,8 @@ namespace libm2 {
         extern lua_settop SetTop;
         extern lua_rawseti RawSetI;
         extern lua_rawset RawSet;
+
+        extern lua_type Type;
     }
 }
 #endif // __LIBGAME_GAME_LUA_HPP

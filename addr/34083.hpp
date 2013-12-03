@@ -22,6 +22,7 @@ namespace libm2 {
             TransformRefineItem = 0x8097700,
             BroadcastNotice = 0x80d5570,
             SendNotice = 0x80d54b0,
+            IS_SUMMONABLE_ZONE = 0x8097CA0,
         };
         enum class CHARACTER{
             AcceptToParty__LPCHARACTER=0x8071EB0, // CHARACTER::AcceptToParty(CHARACTER*), _ZN9CHARACTER13AcceptToPartyEPS_
@@ -1406,6 +1407,8 @@ namespace libm2 {
             SetTop = 0x843F020,
             RawSetI = 0x843FD80,
             RawSet = 0x843FDE0,
+
+            Type = 0x843F190,
         };
         enum class P2P_MANAGER{
             singleton = 0x86A3714,
