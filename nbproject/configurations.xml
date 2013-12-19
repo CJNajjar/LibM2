@@ -218,6 +218,7 @@
       <itemPath>LibM2.cpp</itemPath>
       <itemPath>LibM2.hpp</itemPath>
       <itemPath>addr.hpp</itemPath>
+      <itemPath>main.cpp</itemPath>
       <itemPath>revision.hpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -631,6 +632,8 @@
       <item path="lib/log.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="lib/singleton.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="revision.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -1048,6 +1051,8 @@
       <item path="lib/log.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="lib/singleton.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="revision.hpp" ex="false" tool="3" flavor2="0">
       </item>

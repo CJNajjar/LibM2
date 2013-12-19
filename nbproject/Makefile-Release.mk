@@ -88,6 +88,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/game/quest/PC.o \
 	${OBJECTDIR}/lib/dif.o \
 	${OBJECTDIR}/lib/log.o \
+	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/utils/hde/hde32.o
 
 
@@ -379,6 +380,11 @@ ${OBJECTDIR}/lib/log.o: lib/log.cpp
 	${MKDIR} -p ${OBJECTDIR}/lib
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -Wall -std=c++11 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/lib/log.o lib/log.cpp
+
+${OBJECTDIR}/main.o: main.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -std=c++11 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/utils/hde/hde32.o: utils/hde/hde32.c 
 	${MKDIR} -p ${OBJECTDIR}/utils/hde
