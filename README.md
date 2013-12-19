@@ -1,4 +1,4 @@
-LibM2
+LibM2 [![Build Status](http://jenkins.libm2.org:8180/job/LibM2/badge/icon)](http://jenkins.libm2.org:8180/job/LibM2/)
 =====
 A library to help extend and develop new features for Metin2 servers
 
