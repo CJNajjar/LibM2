@@ -18,6 +18,6 @@ void lib_main(){
         std::cout << std::endl << "Error when hooking function: " << e.what() << std::endl << std::endl;
         abort();
     }
-
+    // test
     std::cout << "**** Done initializing!" << std::endl;
 }
