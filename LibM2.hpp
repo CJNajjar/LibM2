@@ -35,7 +35,8 @@ namespace libm2 {
         static void addQuestTable(std::string table, tQuestTable);
         static void addQuestTable(IQuest*);
         static void removePRELOAD();
-        static bool isRightRev();
+        static bool isRightRevision();
+        static std::string getRevision();
     };
 }
 #endif // __LIBM2_LIBM2_HPP

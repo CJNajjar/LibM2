@@ -104,9 +104,11 @@ namespace libm2 {
         }
     };
 
-    bool LibM2::isRightRev() {
+    bool LibM2::isRightRevision() {
         std::string Revision((char*) libm2::Addr::misc::version, libm2::Addr::version_length);
         return Revision == std::string(libm2::Addr::version_string);
     }
-
+    std::string LibM2::getRevision(){
+        return libm2::Addr::version_string;
+    }
 }
