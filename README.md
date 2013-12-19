@@ -16,5 +16,5 @@ I have a mailing list set up for support and I'm going to focus mainly on that.
 I will still support via issues and or other means of communication - the mailing list is prefered though, 'cause other people will be able to help too.
 To subscribe sent a mail to support-subscribe@libm2.org
 
-[Jenkins](http://jenkins.libm2.org)
+[Jenkins](http://jenkins.libm2.org:8180/job/LibM2/)
 ====
