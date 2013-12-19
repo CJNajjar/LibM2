@@ -7,6 +7,8 @@
 #define __LIBM2_ADDR_34083_HPP
 namespace libm2 {
     namespace Addr {
+        static const char version_string[]="34083";
+        static const unsigned int version_length = 5;
         enum class misc {
             version = 0x848C62A,
             get_global_time = 0x81FB930,

@@ -1,10 +1,9 @@
 #include "addr.hpp"
 #include "LibM2.hpp"
 void __attribute__ ((constructor)) lib_main(void);
-std::string Revision((char*)libm2::Addr::misc::version,5);
-bool RIGHTREV=Revision=="34083";
+
 void lib_main(){
-    if (!RIGHTREV){
+    if (!libm2::LibM2::isRightRev()){
         std::cout << "LibM2 is not compatible to this game revision!" << std::endl;
         abort();
     }
