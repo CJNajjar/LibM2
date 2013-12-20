@@ -14,7 +14,7 @@ int game_main(int argc, char** argv){
     std::cout << "**** Game Revision is " << LibM2::getRevision() << std::endl;
     LibM2::removePRELOAD();
     try{
-        LibM2::instance();
+        LibM2::instance()->loadPlugins();
     } catch(MologieDetours::DetourException &e) {
         std::cout << std::endl << "Error when hooking function: " << e.what() << std::endl << std::endl;
         abort();

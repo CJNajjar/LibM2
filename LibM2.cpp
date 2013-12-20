@@ -20,8 +20,6 @@ namespace libm2 {
         assert(!ms_singleton);
         detour_interpretCommand = simpleHook<tInterpretCommand>((unsigned int) Addr::misc::interpret_command, interpretCommand);
         detour_registerQuestTables = simpleHook<void(*)(void) >((unsigned int) Addr::quest::misc::RegisterAffectFunctionTable, registerQuestTables);
-        // Load plugins
-        loadPlugins();
     }
 
     void LibM2::loadPlugins() {
