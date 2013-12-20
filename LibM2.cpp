@@ -71,9 +71,9 @@ namespace libm2 {
                     }
                     SYSLOG << "Loading plugin " << ((const char*(*)(void))getFullName)() << "(" << hFile->d_name << ")" << std::endl;
                     m_plugins.push_back(handle);
-                    if (((bool(*)(void))initialize)()){
+                    if (((bool(*)(void))initialize)()) {
                         SYSLOG << "Success" << std::endl;
-                    }else{
+                    } else {
                         // plugin is responsibly for logging why it didnt inizialize
                     }
                 }
@@ -107,7 +107,33 @@ namespace libm2 {
 
     void LibM2::addCommand(std::string name, ICommand* cmd) {
         std::cout << "**** Added custom command: " << name << std::endl;
-        instance()->m_map_command.insert(std::pair<std::string, ICommand*>(name, cmd));
+        this->m_map_command.insert(std::pair<std::string, ICommand*>(name, cmd));
+    }
+
+    ICommand* LibM2::getCommand(std::string name) {
+        auto it = this->m_map_command.find(name);
+        if (it == this->m_map_command.end()) {
+            return 0;
+        }
+        return it->second;
+    }
+
+    bool LibM2::isCommand(std::string name) {
+        auto it = this->m_map_command.find(name);
+        if (it == this->m_map_command.end()) {
+            return 0;
+        }
+        return true;
+    }
+
+    ICommand* LibM2::removeCommand(std::string name) {
+        auto it = this->m_map_command.find(name);
+        if (it == this->m_map_command.end()) {
+            return 0;
+        }
+        ICommand* cmd = it->second;
+        this->m_map_command.erase(it);
+        return cmd;
     }
 
     void LibM2::registerQuestTables() {

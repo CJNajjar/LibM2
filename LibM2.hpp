@@ -31,7 +31,10 @@ namespace libm2 {
         LibM2();
         void loadPlugins();
         static void interpretCommand(LPCHARACTER ch, const char* data, size_t len);
-        static void addCommand(std::string name, ICommand* cmd);
+        void addCommand(std::string name, ICommand* cmd);
+        ICommand* removeCommand(std::string name);
+        ICommand* getCommand(std::string name);
+        bool isCommand(std::string name);
         static void registerQuestTables();
         static void addQuestFunction(std::string table, std::string name, lua_CFunction func);
         static void addQuestTable(std::string table, tQuestTable);
