@@ -24,10 +24,12 @@ namespace libm2 {
         std::map<std::string, tQuestTable> m_map_quest;
         MologieDetours::Detour<tInterpretCommand>*detour_interpretCommand;
         MologieDetours::Detour<void(*)(void) >*detour_registerQuestTables;
+        std::vector<void*> m_plugins;
     public:
         //events<CHARACTER*>* onDeath;
     public:
         LibM2();
+        void loadPlugins();
         static void interpretCommand(LPCHARACTER ch, const char* data, size_t len);
         static void addCommand(std::string name, ICommand* cmd);
         static void registerQuestTables();

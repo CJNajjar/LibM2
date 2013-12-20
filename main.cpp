@@ -1,8 +1,10 @@
-#include "addr.hpp"
 #include "LibM2.hpp"
+#include "addr.hpp"
+#include "lib/hook.hpp"
 void __attribute__ ((constructor)) lib_main(void);
 using namespace libm2;
-void lib_main(){
+MologieDetours::Detour<int (*)(int, char **)>* detour_main; 
+int game_main(int argc, char** argv){
     if (!LibM2::isRightRevision()){
         std::cout << "LibM2 is not compatible to this game revision!" << std::endl;
         abort();
@@ -17,6 +19,9 @@ void lib_main(){
         std::cout << std::endl << "Error when hooking function: " << e.what() << std::endl << std::endl;
         abort();
     }
-    // test
     std::cout << "**** Done initializing!" << std::endl;
+    return detour_main->GetOriginalFunction()(argc, argv);
+}
+void lib_main(){
+    detour_main = simpleHook<int (*)(int, char **)>((int)Addr::misc::main,game_main); 
 }

@@ -12,19 +12,88 @@
 #include "lib/log.hpp"
 #include <stdlib.h>
 #include <errno.h>
+#include <dlfcn.h>
+#include <dirent.h>
 namespace libm2 {
 
     LibM2::LibM2() : singleton::singleton() {
+        assert(!ms_singleton);
         detour_interpretCommand = simpleHook<tInterpretCommand>((unsigned int) Addr::misc::interpret_command, interpretCommand);
         detour_registerQuestTables = simpleHook<void(*)(void) >((unsigned int) Addr::quest::misc::RegisterAffectFunctionTable, registerQuestTables);
-        //onDeath=new events<CHARACTER*>;
+        // Load plugins
+        loadPlugins();
+    }
+
+    void LibM2::loadPlugins() {
+        SYSLOG << "Loading plugins:" << std::endl;
+        // unload loaded plugins
+        int err;
+        for (auto handle : m_plugins) {
+            void* deinitialize = dlsym(handle, "deinitialize");
+            if (deinitialize) {
+                ((void(*)(void))deinitialize)();
+            }
+            if ((err = dlclose(handle)) != 0) {
+                std::cerr << "Error closing ( #" << err << ", " << dlerror() << ")" << std::endl;
+                abort();
+            }
+        }
+        // load plugins, again
+        DIR* dirFile = opendir("plugins");
+        if (dirFile) {
+            struct dirent* hFile;
+            errno = 0;
+            while ((hFile = readdir(dirFile)) != NULL) {
+                if (strstr(hFile->d_name, ".so")) {
+                    SYSLOG << "Found file " << hFile->d_name << std::endl;
+                    // load plugin
+                    void * handle = dlopen((std::string("plugins/") + hFile->d_name).c_str(), RTLD_LAZY);
+                    if (!handle) {
+                        std::cerr << "Could not load plugin 'plugins/" << hFile->d_name << "' (" << dlerror() << ")" << std::endl;
+                        SYSERR << "Could not load plugin 'plugins/" << hFile->d_name << "' (" << dlerror() << ")" << std::endl;
+                        continue;
+                    }
+                    void * initialize = dlsym(handle, "initialize");
+                    if (!initialize) {
+                        std::cerr << "Could not load plugin " << hFile->d_name << ". inizialize is not implemented" << std::endl;
+                        SYSERR << "Could not load plugin " << hFile->d_name << ". inizialize is not implemented" << std::endl;
+                        continue;
+                    }
+                    void * getName = dlsym(handle, "getName");
+                    if (!getName) {
+                        std::cerr << "Could not load plugin " << hFile->d_name << ". getName is not implemented" << std::endl;
+                        SYSERR << "Could not load plugin " << hFile->d_name << ". getName is not implemented" << std::endl;
+                        continue;
+                    }
+                    void * getFullName = dlsym(handle, "getFullName");
+                    if (!getFullName) {
+                        std::cerr << "Could not load plugin " << hFile->d_name << ". getFullName is not implemented" << std::endl;
+                        SYSERR << "Could not load plugin " << hFile->d_name << ". getFullName is not implemented" << std::endl;
+                        continue;
+                    }
+                    SYSLOG << "Loading plugin " << ((const char*(*)(void))getFullName)() << "(" << hFile->d_name << ")" << std::endl;
+                    m_plugins.push_back(handle);
+                    if (((bool(*)(void))initialize)()){
+                        SYSLOG << "Success" << std::endl;
+                    }else{
+                        // plugin is responsibly for logging why it didnt inizialize
+                    }
+                }
+            }
+            closedir(dirFile);
+            // inizialize plugins
+        } else {
+            std::cerr << "Could not open plugin directory 'plugins' (errno #" << errno << ")" << std::endl;
+            abort();
+        }
+        SYSLOG << "Done loading plugins." << std::endl;
     }
 
     void LibM2::interpretCommand(LPCHARACTER ch, const char* data, size_t len) {
         LibM2* self = instance();
         std::istringstream iss(std::string(data, len));
         std::vector<std::string> arguments;
-        copy(std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>(), std::back_inserter<std::vector<std::string> >(arguments));
+        std::copy(std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>(), std::back_inserter<std::vector<std::string> >(arguments));
         if (self->m_map_command.find(arguments.front()) != self->m_map_command.end()) {
             ICommand* cmd = self->m_map_command[arguments.front()];
             if (cmd->usableFor(ch)) {
@@ -108,7 +177,8 @@ namespace libm2 {
         std::string Revision((char*) libm2::Addr::misc::version, libm2::Addr::version_length);
         return Revision == std::string(libm2::Addr::version_string);
     }
-    std::string LibM2::getRevision(){
+
+    std::string LibM2::getRevision() {
         return libm2::Addr::version_string;
     }
 }
