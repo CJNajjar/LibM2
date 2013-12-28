@@ -15,10 +15,6 @@ namespace libm2 {
         return ((const char* (*)(const char*))Addr::misc::locale_find)(data);
     }
 
-    const char* two_arguments(const char * src, char * one, size_t size_one, char * two, size_t size_two) {
-        return ((const char *(*)(const char *, char *, size_t, char *, size_t))Addr::misc::two_arguments)(src, one, size_one, two, size_two);
-    }
-
     DWORD thecore_random() {
         return ((DWORD(*)(void))Addr::misc::thecore_random)();
     }

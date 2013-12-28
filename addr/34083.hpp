@@ -13,10 +13,8 @@ namespace libm2 {
             version = 0x848C62A,
             get_global_time = 0x81FB930,
             main = 0x8233C40,
-            interpret_command = 0x80CCF80,
             locale_find = 0x8163460,
             Metin2Server_Check = 0x82328F0,
-            two_arguments = 0x81FB8D0,
             thecore_random = 0x8439614,
             sys_err = 0x8439110,
             sys_log = 0x8438A90,
@@ -25,6 +23,12 @@ namespace libm2 {
             BroadcastNotice = 0x80d5570,
             SendNotice = 0x80d54b0,
             IS_SUMMONABLE_ZONE = 0x8097CA0,
+        };
+        enum class command{
+            interpret_command = 0x80CCF80,
+            cmd_info=0x85eaea0,
+            cmd_info_length=221,
+            two_arguments = 0x81FB8D0,
         };
         enum class CHARACTER{
             AcceptToParty__LPCHARACTER=0x8071EB0, // CHARACTER::AcceptToParty(CHARACTER*), _ZN9CHARACTER13AcceptToPartyEPS_

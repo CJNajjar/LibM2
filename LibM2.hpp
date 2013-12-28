@@ -6,7 +6,7 @@
 #ifndef __LIBM2_LIBM2_HPP
 #define __LIBM2_LIBM2_HPP
 #include "game/stdInclude.hpp"
-#include "Command.hpp"
+#include "Command/ICommand.hpp"
 #include "lib/singleton.hpp"
 #include "utils/detours.h"
 #include "lib/hook.hpp"

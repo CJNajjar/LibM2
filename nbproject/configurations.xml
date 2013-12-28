@@ -10,6 +10,14 @@
       <logicalFolder name="addr" displayName="addr" projectFiles="true">
         <itemPath>addr/34083.hpp</itemPath>
       </logicalFolder>
+      <logicalFolder name="f1" displayName="Command" projectFiles="true">
+        <itemPath>Command/CommandData.cpp</itemPath>
+        <itemPath>Command/CommandData.hpp</itemPath>
+        <itemPath>Command/ICommand.cpp</itemPath>
+        <itemPath>Command/ICommand.hpp</itemPath>
+        <itemPath>Command/OriginalCommand.cpp</itemPath>
+        <itemPath>Command/OriginalCommand.hpp</itemPath>
+      </logicalFolder>
       <logicalFolder name="game" displayName="game" projectFiles="true">
         <logicalFolder name="building" displayName="building" projectFiles="true">
           <itemPath>game/building/CLand.cpp</itemPath>
@@ -172,6 +180,8 @@
         <itemPath>game/VID.cpp</itemPath>
         <itemPath>game/VID.hpp</itemPath>
         <itemPath>game/_CCI.hpp</itemPath>
+        <itemPath>game/command.cpp</itemPath>
+        <itemPath>game/command.hpp</itemPath>
         <itemPath>game/enums.hpp</itemPath>
         <itemPath>game/fwDecl.hpp</itemPath>
         <itemPath>game/global.cpp</itemPath>
@@ -211,8 +221,6 @@
         <itemPath>utils/hde.h</itemPath>
         <itemPath>utils/lua.hpp</itemPath>
       </logicalFolder>
-      <itemPath>Command.cpp</itemPath>
-      <itemPath>Command.hpp</itemPath>
       <itemPath>IQuest.cpp</itemPath>
       <itemPath>IQuest.hpp</itemPath>
       <itemPath>LibM2.cpp</itemPath>
@@ -262,9 +270,17 @@
       </compileType>
       <item path=".gitignore" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Command.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Command/CommandData.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Command.hpp" ex="false" tool="3" flavor2="0">
+      <item path="Command/CommandData.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Command/ICommand.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Command/ICommand.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Command/OriginalCommand.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Command/OriginalCommand.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="IQuest.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -560,6 +576,10 @@
       <item path="game/building/CObject.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="game/building/SObjectProto.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="game/command.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="game/command.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="game/enums.hpp" ex="false" tool="3" flavor2="0">
       </item>
@@ -681,9 +701,17 @@
       </compileType>
       <item path=".gitignore" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Command.cpp" ex="false" tool="1" flavor2="0">
+      <item path="Command/CommandData.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="Command.hpp" ex="false" tool="3" flavor2="0">
+      <item path="Command/CommandData.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Command/ICommand.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Command/ICommand.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Command/OriginalCommand.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Command/OriginalCommand.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="IQuest.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -979,6 +1007,10 @@
       <item path="game/building/CObject.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="game/building/SObjectProto.hpp" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="game/command.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="game/command.hpp" ex="false" tool="3" flavor2="0">
       </item>
       <item path="game/enums.hpp" ex="false" tool="3" flavor2="0">
       </item>

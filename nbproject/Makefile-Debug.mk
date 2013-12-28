@@ -35,7 +35,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/Command.o \
+	${OBJECTDIR}/Command/CommandData.o \
+	${OBJECTDIR}/Command/ICommand.o \
+	${OBJECTDIR}/Command/OriginalCommand.o \
 	${OBJECTDIR}/IQuest.o \
 	${OBJECTDIR}/LibM2.o \
 	${OBJECTDIR}/game/CEntity.o \
@@ -79,6 +81,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/game/building/CLand.o \
 	${OBJECTDIR}/game/building/CManager.o \
 	${OBJECTDIR}/game/building/CObject.o \
+	${OBJECTDIR}/game/command.o \
 	${OBJECTDIR}/game/global.o \
 	${OBJECTDIR}/game/lua.o \
 	${OBJECTDIR}/game/marriage/CManager.o \
@@ -116,10 +119,20 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/LibM2.${CND_DLIB_EXT}: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/LibM2.${CND_DLIB_EXT} ${OBJECTFILES} ${LDLIBSOPTIONS} -shared -fPIC
 
-${OBJECTDIR}/Command.o: Command.cpp 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/Command/CommandData.o: Command/CommandData.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Wall -std=c++11 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Command.o Command.cpp
+	$(COMPILE.cc) -g -Wall -std=c++11 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Command/CommandData.o Command/CommandData.cpp
+
+${OBJECTDIR}/Command/ICommand.o: Command/ICommand.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -std=c++11 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Command/ICommand.o Command/ICommand.cpp
+
+${OBJECTDIR}/Command/OriginalCommand.o: Command/OriginalCommand.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -std=c++11 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Command/OriginalCommand.o Command/OriginalCommand.cpp
 
 ${OBJECTDIR}/IQuest.o: IQuest.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -335,6 +348,11 @@ ${OBJECTDIR}/game/building/CObject.o: game/building/CObject.cpp
 	${MKDIR} -p ${OBJECTDIR}/game/building
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Wall -std=c++11 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/game/building/CObject.o game/building/CObject.cpp
+
+${OBJECTDIR}/game/command.o: game/command.cpp 
+	${MKDIR} -p ${OBJECTDIR}/game
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Wall -std=c++11 -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/game/command.o game/command.cpp
 
 ${OBJECTDIR}/game/global.o: game/global.cpp 
 	${MKDIR} -p ${OBJECTDIR}/game

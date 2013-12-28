@@ -14,11 +14,12 @@
 #include <errno.h>
 #include <dlfcn.h>
 #include <dirent.h>
+#include <regex>
 namespace libm2 {
 
     LibM2::LibM2() : singleton::singleton() {
         assert(!ms_singleton);
-        detour_interpretCommand = simpleHook<tInterpretCommand>((unsigned int) Addr::misc::interpret_command, interpretCommand);
+        detour_interpretCommand = simpleHook<tInterpretCommand>((unsigned int) Addr::command::interpret_command, interpretCommand);
         detour_registerQuestTables = simpleHook<void(*)(void) >((unsigned int) Addr::quest::misc::RegisterAffectFunctionTable, registerQuestTables);
     }
 
@@ -89,13 +90,11 @@ namespace libm2 {
 
     void LibM2::interpretCommand(LPCHARACTER ch, const char* data, size_t len) {
         LibM2* self = instance();
-        std::istringstream iss(std::string(data, len));
-        std::vector<std::string> arguments;
-        std::copy(std::istream_iterator<std::string>(iss), std::istream_iterator<std::string>(), std::back_inserter<std::vector<std::string> >(arguments));
-        if (self->m_map_command.find(arguments.front()) != self->m_map_command.end()) {
-            ICommand* cmd = self->m_map_command[arguments.front()];
+        CommandData* cmddata = new CommandData(ch, data, len); 
+        if (self->m_map_command.find(cmddata->getArgument(0)) != self->m_map_command.end()) {
+            ICommand* cmd = self->m_map_command[cmddata->getArgument(0)];
             if (cmd->usableFor(ch)) {
-                cmd->use(ch, arguments);
+                cmd->use(ch, cmddata);
                 return;
             } else if (cmd->isReplaced()) {
                 ch->ChatPacket(1, locale_find("그런 명령어는 없습니다"));
